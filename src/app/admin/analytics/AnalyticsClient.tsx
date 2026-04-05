@@ -5,7 +5,7 @@ import clsx from 'clsx'
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, PieChart, Pie
 } from 'recharts'
-import { NewProduct, SecondHandProduct, RepairJob } from '@/lib/sheets'
+
 
 interface Margins {
   global: number;
@@ -211,7 +211,7 @@ export default function AnalyticsClient({
       {/* Comparison Explorer UI */}
       <div className="card p-5 space-y-5">
         <div className="flex items-center gap-2 mb-2">
-          <PieChart size={18} className="text-amber-400" />
+          <PieChartIcon size={18} className="text-amber-400" />
           <h2 className="font-display font-semibold text-brand-text">Comparison Explorer</h2>
         </div>
         
@@ -263,7 +263,7 @@ export default function AnalyticsClient({
                       cursor={{ fill: '#1A1A1F' }}
                       contentStyle={{ backgroundColor: '#111114', borderColor: '#22222A', borderRadius: '12px', color: '#fff', fontSize: '12px', fontFamily: 'Sora' }}
                       itemStyle={{ color: compareMetric === 'profit' ? '#FF3B46' : '#fff' }}
-                      formatter={(val: number) => compareMetric === 'volume' ? [val, 'Units'] : [`₹${val.toLocaleString('en-IN')}`, compareMetric === 'profit' ? 'Profit' : 'Revenue']}
+                      formatter={(val: any) => compareMetric === 'volume' ? [val, 'Units'] : [`₹${Number(val||0).toLocaleString('en-IN')}`, compareMetric === 'profit' ? 'Profit' : 'Revenue']}
                     />
                     <Bar dataKey={compareMetric} radius={[4, 4, 0, 0]}>
                       {data.chartData.map((entry, index) => (
@@ -296,7 +296,7 @@ export default function AnalyticsClient({
                     </Pie>
                     <Tooltip 
                       contentStyle={{ backgroundColor: '#111114', borderColor: '#22222A', borderRadius: '12px', color: '#fff', fontSize: '12px', fontFamily: 'Sora' }}
-                      formatter={(val: number) => compareMetric === 'volume' ? [val, 'Units'] : [`₹${val.toLocaleString('en-IN')}`, '']}
+                      formatter={(val: any) => compareMetric === 'volume' ? [val, 'Units'] : [`₹${Number(val||0).toLocaleString('en-IN')}`, '']}
                     />
                   </PieChart>
                 </ResponsiveContainer>

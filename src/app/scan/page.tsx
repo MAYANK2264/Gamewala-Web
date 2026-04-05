@@ -7,7 +7,9 @@ import AppHeader from '@/components/layout/AppHeader'
 import BottomNav from '@/components/layout/BottomNav'
 import clsx from 'clsx'
 
-export default function ScanPage() {
+import { Suspense } from 'react'
+
+function ScanPageContent() {
   const [mode, setMode] = useState<'camera' | 'manual'>('camera')
   const [scanning, setScanning] = useState(false)
   const [manualId, setManualId] = useState('')
@@ -172,5 +174,17 @@ export default function ScanPage() {
 
       <BottomNav isAdmin={false} />
     </div>
+  )
+}
+
+export default function ScanPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-brand-black flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-brand-red animate-spin" />
+      </div>
+    }>
+      <ScanPageContent />
+    </Suspense>
   )
 }

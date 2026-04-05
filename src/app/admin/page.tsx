@@ -145,7 +145,7 @@ export default async function AdminPage() {
                   }`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-display font-medium text-brand-text truncate">{task.title}</p>
-                    <p className="text-xs text-brand-text-dim">→ {task.assigned_to || task.assignedTo}</p>
+                    <p className="text-xs text-brand-text-dim mt-1">Assigned to: {(task as any).assigned_to || task.assignedTo}</p>
                   </div>
                 </div>
               ))}

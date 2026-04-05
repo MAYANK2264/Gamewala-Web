@@ -93,7 +93,7 @@ export default async function ItemDetailPage({ params }: { params: { id: string 
 
         {/* New product details */}
         {itemType === 'new' && (() => {
-          const p = item as Record<string, string>
+          const p = item as any
           return (
             <div className="card p-5">
               <Row label="Category" value={p.category} />
@@ -110,7 +110,7 @@ export default async function ItemDetailPage({ params }: { params: { id: string 
 
         {/* Second-hand details */}
         {itemType === 'secondhand' && (() => {
-          const p = item as Record<string, string>
+          const p = item as any
           return (
             <>
               <div className="card p-5">
@@ -143,7 +143,7 @@ export default async function ItemDetailPage({ params }: { params: { id: string 
 
         {/* Repair details */}
         {itemType === 'repair' && (() => {
-          const r = item as Record<string, string>
+          const r = item as any
           const status = r.status || 'pending'
           return (
             <>
